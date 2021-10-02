@@ -1,23 +1,32 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
+import UserList from '../components/UserList'
 
-export default function Home({jokes}) {
-  console.log(jokes)
+export default function Home({ users }) {
   return (
     <div className={styles.container}>
-      <h1>Yoo Bio</h1>
+      <h1>Acme Technologies</h1>
+      <UserList users={users} />
     </div>
-  )
+  );
 }
 
+export const getStaticProps = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
+  const users = await res.json();
 
-// export const getStaticProps = async () => {
-//   const res = await fetch(`https://icanhazdadjoke.com`)
-//   const jokes = await res.json()
+  return {
+    props: {
+      users
+    }
+  };
+};
 
-//   return {
-//     props: {
-//       jokes
-//     }
-//   }
-// }
+//user
+  //address
+  //company
+  //email
+  //id
+  //name
+  //phone
+  //username
+  //website
