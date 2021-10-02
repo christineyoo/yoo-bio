@@ -1,32 +1,22 @@
 import styles from '../styles/Home.module.css';
-import UserList from '../components/UserList'
+import PostList from '../components/PostList'
 
-export default function Home({ users }) {
+export default function Home({ posts }) {
   return (
     <div className={styles.container}>
-      <h1>Acme Technologies</h1>
-      <UserList users={users} />
+      <h1>My blog</h1>
+      <PostList posts={posts} />
     </div>
   );
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
-  const users = await res.json();
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=10`);
+  const posts = await res.json();
 
   return {
     props: {
-      users
+      posts
     }
   };
 };
-
-//user
-  //address
-  //company
-  //email
-  //id
-  //name
-  //phone
-  //username
-  //website
