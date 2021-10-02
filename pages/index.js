@@ -12,6 +12,10 @@ export default function Home({ posts }) {
     setComments(data)
   }
 
+  const clearComments = () => {
+    setComments([])
+  }
+
   return (
     <div className={styles.container}>
       <h1>My blog</h1>
@@ -23,6 +27,7 @@ export default function Home({ posts }) {
           )
         })}
       </ul>
+      {comments.length > 0 ? <button onClick={clearComments}>Clear Comments</button> : ''}
       <PostList posts={posts} />
     </div>
   );
