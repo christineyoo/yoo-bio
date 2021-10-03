@@ -20,6 +20,16 @@ const Comments = () => {
         })
         const data = await response.json()
         console.log(data)
+        fetchComments()
+    }
+
+    const deleteComment = async (commentId) => {
+        const response = await fetch(`/api/comments/${commentId}`, {
+            method: 'DELETE'
+        })
+        const data = response.json()
+        console.log(data)
+        fetchComments()
     }
 
     return (
@@ -29,7 +39,10 @@ const Comments = () => {
             <ul>
                 {comments.map(comment => {
                 return (
-                    <li key={comment.id}>{comment.id} {comment.text}</li>
+                    <li key={comment.id}>{comment.id} {comment.text}
+                        <button onClick={() => deleteComment(comment.id)}>Delete</button>
+                    </li>
+                    
                 )
                 })}
             </ul>
