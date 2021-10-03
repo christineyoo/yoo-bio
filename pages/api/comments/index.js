@@ -6,7 +6,7 @@ export default function handler(req, res) {
     } else if (req.method === 'POST') {
         const comment = req.body.comment
         if (comment.length === 0) {
-            res.status(404).json({ message: `Please write a comment with at least 1 character`})
+            res.status(400).json({ message: `Please write a comment with at least 1 character`})
         } else {
            const newComment = {
                 id: Date.now(),
