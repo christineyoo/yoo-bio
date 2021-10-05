@@ -1,5 +1,6 @@
 import styles from '../styles/Home.module.css'
 import PostList from '../components/PostList'
+import {server} from '../config/index'
 
 export default function Home({ posts }) {
 
@@ -12,8 +13,7 @@ export default function Home({ posts }) {
 }
 
 export const getStaticProps = async () => {
-  try {
-      const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=10`);
+      const res = await fetch(`${server}/api/departments`);
       const posts = await res.json();
 
       return {
@@ -21,10 +21,5 @@ export const getStaticProps = async () => {
           posts
         }
       }
-  } catch {
-    res.statusCode = 404
-    return {
-      props: {}
-    }
-  }
 }
+
