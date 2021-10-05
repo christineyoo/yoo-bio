@@ -10,6 +10,11 @@ export default function handler(req, res) {
         const index = comments.indexOf(deletedComment)
         comments.splice(index, 1)
         res.status(200).json(deletedComment)
+    } else if (req.method === 'PATCH') {
+        const comment = req.body.text
+        const updatedComment = comments.find(comment => comment.id === parseInt(commentId))
+        const index = comments.indexOf(updatedComment)
+        comments[index].text = comment
+        res.status(200).json(updatedComment)
     }
-    
 }
